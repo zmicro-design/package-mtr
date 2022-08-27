@@ -1,0 +1,17 @@
+#!/bin/bash
+
+help() {
+  echo "Usage:"
+  echo "  zmicro mtr <args ...>"
+  echo ""
+}
+
+core() {
+  sudo mtr "$@"
+}
+
+run() {
+  core "$@"
+}
+
+run "$@"

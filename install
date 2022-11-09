@@ -12,6 +12,12 @@ core() {
     exit 0
   fi
 
+  # run with docker
+  if [ "$(os::is_macos)" = "true" ]; then
+    log::info "install mtr success."
+    return
+  fi
+
   which mtr >>/dev/null 2>&1
   if [ "$?" != "0" ]; then
     pm install -y mtr

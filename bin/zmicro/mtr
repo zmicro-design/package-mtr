@@ -7,6 +7,17 @@ help() {
 }
 
 core() {
+  # run with docker
+  if [ "$(os::is_macos)" = "true" ]; then
+    if [ "$(os::has_command docker)" != "true" ]; then
+      log::error "[$(timestamp)] You should install Docker Desktop or Podman for Mac first."
+      return 1
+    fi
+
+    docker run -it --rm whatwewant/mtr:v1 mtr "$@"
+    return
+  fi
+
   sudo mtr "$@"
 }
 
